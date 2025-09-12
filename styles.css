@@ -8,6 +8,7 @@
   --cor-primaria: darkblue;
   --cor-secundaria: lightgreen;
   --cor-terciaria: lightblue;
+  --cor-terciaria-hover: rgb(181, 226, 241);
 }
 
 * {
@@ -56,8 +57,17 @@ aside {
   font-size: 22px;
 }
 
+.lista_links li a:hover {
+  color: var(--cor-destaque);
+}
+
 .lista_links li:first-of-type a {
   color: var(--cor-destaque);
+}
+
+.lista_links li:first-of-type a:hover {
+  background-color: var(--cor-destaque);
+  color: var(--cor-primaria);
 }
 
 .link-destaque {
@@ -71,14 +81,14 @@ main {
   background-color: var(--cor-fundo-secao-principal);
   border-radius: 10px;
   padding: 28px;
-  gap: 24px;
+  gap: 28px;
 }
 
 .container-upload-imagem {
   width: 60%;
 }
 
-.botao-upload {
+#botao-upload {
   width: 100%;
   height: 8%;
   text-align: center;
@@ -93,7 +103,19 @@ main {
   font-size: 18px;
 }
 
-.botao-upload::after {
+#botao-upload:hover {
+  border: 1px solid var(--cor-primaria);
+  background-color: var(--cor-primaria);
+  color: var(--cor-secundaria);
+}
+
+#botao-upload:active {
+  border: 1px solid var(--cor-fundo-global);
+  background-color: var(--cor-fundo-global);
+  color: var(--cor-primaria);
+}
+
+#botao-upload::after {
   content: "";
   background-image: url(./img/upload.svg);
   background-size: contain;
@@ -118,6 +140,10 @@ main {
   background-color: var(--cor-terciaria);
   border-radius: 8px;
   padding: 20px 16px;
+}
+
+.container-imagem:hover {
+  background-color: var(--cor-terciaria-hover);
 }
 
 .imagem-principal {
@@ -165,12 +191,24 @@ textarea {
   line-height: 22.5px;
 }
 
+form div input:hover {
+  background-color: var(--cor-terciaria-hover);
+}
+
+form div textarea:hover {
+  background-color: var(--cor-terciaria-hover);
+}
+
 form div input {
   height: 39px;
 }
 
 textarea {
   height: 161px;
+}
+
+.lista-tags {
+  display: flex;
 }
 
 .lista-tags li {
@@ -183,8 +221,9 @@ textarea {
   border-radius: 4px;
 }
 
-.lista-tags {
-  display: flex;
+.lista-tags li:hover {
+  border: 1px solid var(--cor-primaria);
+  text-decoration: underline dotted;
 }
 
 .container-botoes {
@@ -210,6 +249,12 @@ textarea {
   position: relative;
 }
 
+.botao-descartar:hover {
+  background-color: var(--cor-fundo-global);
+  color: var(--cor-texto-global);
+  border: 1px solid var(--cor-fundo-global);
+}
+
 .botao-descartar::after {
   content: "";
   background-image: url(./img/trash.svg);
@@ -229,6 +274,18 @@ textarea {
   color: var(--cor-primaria);
   border: 1px solid var(--cor-terciaria);
   position: relative;
+}
+
+.botao-publicar:hover {
+  background-color: var(--cor-destaque);
+  color: var(--cor-texto-global);
+  border: 1px solid var(--cor-destaque);
+}
+
+.botao-publicar:active {
+  background-color: var(--cor-fundo-global);
+  color: var(--cor-primaria);
+  border: 1px solid var(--cor-terciaria);
 }
 
 .botao-publicar::after {
