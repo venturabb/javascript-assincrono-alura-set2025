@@ -46,3 +46,20 @@ imagemParaUpload.addEventListener("change", async (evento) => {
     }
   }
 });
+
+const tagASerCriada = document.getElementById("tags");
+
+console.log(tagASerCriada);
+tagASerCriada.addEventListener("keypress", (evento) => {
+  if (evento.code === "Enter" || evento.code === "NumpadEnter") {
+    evento.preventDefault();
+    const textoDaTag = tagASerCriada.value.trim();
+    if (textoDaTag) {
+      const novaTag = document.createElement("li");
+      novaTag.innerHTML = `<p>${tagASerCriada.value}</p> <img src="./img/close-black.svg" class="remover-tag">`;
+      const listaDeTags = document.querySelector(".lista-tags");
+      listaDeTags.appendChild(novaTag);
+      tagASerCriada.value = "";
+    }
+  }
+});
