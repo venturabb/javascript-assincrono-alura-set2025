@@ -1,7 +1,13 @@
 const botaoUpload = document.getElementById("botao-upload");
 const imagemParaUpload = document.getElementById("imagem-para-upload");
 
+const containerUploadImagem = document.querySelector(".container-upload-imagem");
+
 botaoUpload.addEventListener("click", () => {
+  imagemParaUpload.click();
+});
+
+containerUploadImagem.addEventListener("click", () => {
   imagemParaUpload.click();
 });
 
@@ -48,6 +54,7 @@ imagemParaUpload.addEventListener("change", async (evento) => {
 });
 
 const tagASerCriada = document.getElementById("tags");
+const listaDeTags = document.querySelector(".lista-tags");
 
 console.log(tagASerCriada);
 tagASerCriada.addEventListener("keypress", (evento) => {
@@ -57,9 +64,16 @@ tagASerCriada.addEventListener("keypress", (evento) => {
     if (textoDaTag) {
       const novaTag = document.createElement("li");
       novaTag.innerHTML = `<p>${tagASerCriada.value}</p> <img src="./img/close-black.svg" class="remover-tag">`;
-      const listaDeTags = document.querySelector(".lista-tags");
       listaDeTags.appendChild(novaTag);
       tagASerCriada.value = "";
     }
+  }
+});
+
+listaDeTags.addEventListener("click", (evento) => {
+  if (evento.target.classList.contains("remover-tag")) {
+    const tagASerRemovida = evento.target.parentElement;
+    console.log(tagASerRemovida);
+    listaDeTags.removeChild(tagASerRemovida);
   }
 });
