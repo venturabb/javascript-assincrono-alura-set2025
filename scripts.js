@@ -98,3 +98,28 @@ tagASerCriada.addEventListener("keypress", async (evento) => {
     }
   }
 });
+
+const botaoPublicar = document.querySelector(".botao-publicar");
+
+botaoPublicar.addEventListener("click", async (evento) => {
+  evento.preventDefault();
+  const nomeDoProjeto = document.getElementById("nome").value;
+  const descricaoDoProjeto = document.getElementById("descricao").value;
+  const tagsDoProjeto = Array.from(listaDeTags.querySelectorAll("p")).map((tag) => tag.textContent);
+
+  // console.log(nomeDoProjeto + descricaoDoProjeto + tagsDoProjeto);
+});
+
+async function publicarProjeto(nome, descricao, tags) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const deuCerto = Math.random() > 0.7;
+
+      if (deuCerto) {
+        resolve("Projeto publicado com sucesso.");
+      } else {
+        reject("Erro! Tente novamente.");
+      }
+    }, 1000);
+  });
+}
