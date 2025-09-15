@@ -58,24 +58,43 @@ imagemParaUpload.addEventListener("change", async (evento) => {
 const tagASerCriada = document.getElementById("tags");
 const listaDeTags = document.querySelector(".lista-tags");
 
-console.log(tagASerCriada);
-tagASerCriada.addEventListener("keypress", (evento) => {
-  if (evento.code === "Enter" || evento.code === "NumpadEnter") {
-    evento.preventDefault();
-    const textoDaTag = tagASerCriada.value.trim();
-    if (textoDaTag) {
-      const novaTag = document.createElement("li");
-      novaTag.innerHTML = `<p>${tagASerCriada.value}</p> <img src="./img/close-black.svg" class="remover-tag">`;
-      listaDeTags.appendChild(novaTag);
-      tagASerCriada.value = "";
-    }
-  }
-});
-
 listaDeTags.addEventListener("click", (evento) => {
   if (evento.target.classList.contains("remover-tag")) {
     const tagASerRemovida = evento.target.parentElement;
     console.log(tagASerRemovida);
     listaDeTags.removeChild(tagASerRemovida);
+  }
+});
+
+const tagsDisponiveis = ["Front-end", "Back-end", "Cloud", "IA", "Analytics", "Segurança", "teste"];
+
+async function verificaTagsDisponiveis(tag) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(tagsDisponiveis.includes(tag));
+    }, 500);
+  });
+}
+
+tagASerCriada.addEventListener("keypress", async (evento) => {
+  if (evento.code === "Enter" || evento.code === "NumpadEnter") {
+    evento.preventDefault();
+    const textoDaTag = tagASerCriada.value.trim();
+    if (textoDaTag) {
+      try {
+        const tagExiste = await verificaTagsDisponiveis(textoDaTag);
+        console.log(tagExiste);
+        if (tagExiste) {
+          const novaTag = document.createElement("li");
+          novaTag.innerHTML = `<p>${tagASerCriada.value}</p> <img src="./img/close-black.svg" class="remover-tag">`;
+          listaDeTags.appendChild(novaTag);
+          tagASerCriada.value = "";
+        } else {
+          alert("Tag não encontrada.");
+        }
+      } catch (error) {
+        console.error("Erro ao verificar a existência da tag.");
+      }
+    }
   }
 });
